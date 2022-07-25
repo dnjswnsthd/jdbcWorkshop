@@ -1,0 +1,77 @@
+=== 0725 ====
+>>> chapter 1
+SQL
+1)DDL
+테이블 생성 CREATE TABLE mytest(no number(3), name varchar2(20));
+------------------------------------------------------------------
+2) SELECT
+데이타 조회  select * from emp;
+	  select * from emp where empno=3076;
+3)DML
+테이블에 행 삽입   INSERT INTO mytest (no, name) VALUES(333, 'Peter');
+테이블에 행 삭제   DELETE FROM mytest WHERE no=333;   
+테이블에 행 수정   UPDATE mytest SET name='Jane2' WHERE no=222;
+
+
+>>> chapter 2
+1)Projection
+emp...번호, 사원이름, 업무를 검색
+--> SELECT empno, ename, job FROM emp;
+* emp...이름, 급여, 부서번호를 검색
+--> SELECT ename, sal, deptno FROM emp;
+
+* emp...이름, 급여, 급여에다 300을 더한 급여 부서번호를 검색
+--> SELECT ename, sal, sal+300 FROM emp;
+--> SELECT ename, sal, sal+300 AS 급여인상  FROM emp;//Alias추가
+--> SELECT ename, sal, sal+300  급여인상  FROM emp; //as생략가능..이걸 더 많이 사용
+-->  SELECT ename, sal, sal+300 "급여 인상"  FROM emp; //공백시 " "로 묶어준다.
+
+* emp...사원번호, 업무, 급여, sal*12 (Annual Salary로 별칭)
+-->  SELECT empno, job, sal, sal*12 "Annual Salary" FROM emp;
+
+2) Selection
+* emp...업무가  SALESMAN인 사원의 이름, 업무, 급여를 검색
+-->  SELECT ename, job, sal
+  2  FROM emp
+  3  WHERE job='SALESMAN';
+
+3) ORDER BY
+-->  SELECT ename, job, sal
+  2  FROM emp
+  3  WHERE job='SALESMAN'
+  4  ORDER BY sal; //오름차순
+-->  SELECT ename, job, sal
+  2  FROM emp
+  3  WHERE job='SALESMAN'
+  4  ORDER BY sal DESC; //내림차순
+
+4) DISTINCT :: 중복의 제껴버리는 키워드 / SELECT 바로 뒤에 나온다.
+* emp...부서번호를 검색
+-->  SELECT DISTINCT(deptno) FROM emp;
+-->  SELECT DISTINCT(deptno) FROM emp
+  2  ORDER BY deptno;//  자동정렬 지원 안함..해줘야 한다.
+
+5)  NULL :: 자격없음 / 미확정의 의미를 가지는 값
+*EMP....COMM을 오름차순으로 정렬....사원이름, JOB, COMM이 출력
+--> SELECT ename, job, comm
+  2  FROM emp
+  3  ORDER BY comm;
+
+* emp....comm이 null 인 사원을 검색
+--> SELECT * FROM emp WHERE comm is null;
+--> SELECT * FROM emp WHERE comm is not null;
+
+* emp...사원의 연봉을 구하고 ALIAS를 지정
+--> SELECT ename, job, sal, sal*12+comm 연봉 FROM emp;//comm이 null 이면 연산안됨
+--> SELECT ename, job, sal, sal*12+NVL(comm,0) 연봉 FROM emp;
+  nvl(comm, 0) :: comm이 null이면 0 / null 이 아니면 comm값 그대로 사용
+  
+
+ 6) 연결 연산자
+ --> SELECT ename||'씨! 당신의 급여가' || sal ||'에서 '|| sal*1.02||'로 조정되었습니다' FROM emp;
+
+ 7) rownum
+ * emp...급여를 가장 많이 받는 사원 랭킹 top3명만 출력
+ --> SELECT ename, job, sal
+  2  FROM (SELECT * FROM emp ORDER BY sal DESC)
+  3  WHERE rownum<=3;

@@ -2,35 +2,35 @@
 >>> chapter 1
 SQL
 1)DDL
-Å×ÀÌºí »ý¼º CREATE TABLE mytest(no number(3), name varchar2(20));
+í…Œì´ë¸” ìƒì„± CREATE TABLE mytest(no number(3), name varchar2(20));
 ------------------------------------------------------------------
 2) SELECT
-µ¥ÀÌÅ¸ Á¶È¸  select * from emp;
+ë°ì´íƒ€ ì¡°íšŒ  select * from emp;
 	  select * from emp where empno=3076;
 3)DML
-Å×ÀÌºí¿¡ Çà »ðÀÔ   INSERT INTO mytest (no, name) VALUES(333, 'Peter');
-Å×ÀÌºí¿¡ Çà »èÁ¦   DELETE FROM mytest WHERE no=333;   
-Å×ÀÌºí¿¡ Çà ¼öÁ¤   UPDATE mytest SET name='Jane2' WHERE no=222;
+í…Œì´ë¸”ì— í–‰ ì‚½ìž…   INSERT INTO mytest (no, name) VALUES(333, 'Peter');
+í…Œì´ë¸”ì— í–‰ ì‚­ì œ   DELETE FROM mytest WHERE no=333;   
+í…Œì´ë¸”ì— í–‰ ìˆ˜ì •   UPDATE mytest SET name='Jane2' WHERE no=222;
 
 
 >>> chapter 2
 1)Projection
-emp...¹øÈ£, »ç¿øÀÌ¸§, ¾÷¹«¸¦ °Ë»ö
+emp...ë²ˆí˜¸, ì‚¬ì›ì´ë¦„, ì—…ë¬´ë¥¼ ê²€ìƒ‰
 --> SELECT empno, ename, job FROM emp;
-* emp...ÀÌ¸§, ±Þ¿©, ºÎ¼­¹øÈ£¸¦ °Ë»ö
+* emp...ì´ë¦„, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸ë¥¼ ê²€ìƒ‰
 --> SELECT ename, sal, deptno FROM emp;
 
-* emp...ÀÌ¸§, ±Þ¿©, ±Þ¿©¿¡´Ù 300À» ´õÇÑ ±Þ¿© ºÎ¼­¹øÈ£¸¦ °Ë»ö
+* emp...ì´ë¦„, ê¸‰ì—¬, ê¸‰ì—¬ì—ë‹¤ 300ì„ ë”í•œ ê¸‰ì—¬ ë¶€ì„œë²ˆí˜¸ë¥¼ ê²€ìƒ‰
 --> SELECT ename, sal, sal+300 FROM emp;
---> SELECT ename, sal, sal+300 AS ±Þ¿©ÀÎ»ó  FROM emp;//AliasÃß°¡
---> SELECT ename, sal, sal+300  ±Þ¿©ÀÎ»ó  FROM emp; //as»ý·«°¡´É..ÀÌ°É ´õ ¸¹ÀÌ »ç¿ë
--->  SELECT ename, sal, sal+300 "±Þ¿© ÀÎ»ó"  FROM emp; //°ø¹é½Ã " "·Î ¹­¾îÁØ´Ù.
+--> SELECT ename, sal, sal+300 AS ê¸‰ì—¬ì¸ìƒ  FROM emp;//Aliasì¶”ê°€
+--> SELECT ename, sal, sal+300  ê¸‰ì—¬ì¸ìƒ  FROM emp; //asìƒëžµê°€ëŠ¥..ì´ê±¸ ë” ë§Žì´ ì‚¬ìš©
+-->  SELECT ename, sal, sal+300 "ê¸‰ì—¬ ì¸ìƒ"  FROM emp; //ê³µë°±ì‹œ " "ë¡œ ë¬¶ì–´ì¤€ë‹¤.
 
-* emp...»ç¿ø¹øÈ£, ¾÷¹«, ±Þ¿©, sal*12 (Annual Salary·Î º°Äª)
+* emp...ì‚¬ì›ë²ˆí˜¸, ì—…ë¬´, ê¸‰ì—¬, sal*12 (Annual Salaryë¡œ ë³„ì¹­)
 -->  SELECT empno, job, sal, sal*12 "Annual Salary" FROM emp;
 
 2) Selection
-* emp...¾÷¹«°¡  SALESMANÀÎ »ç¿øÀÇ ÀÌ¸§, ¾÷¹«, ±Þ¿©¸¦ °Ë»ö
+* emp...ì—…ë¬´ê°€  SALESMANì¸ ì‚¬ì›ì˜ ì´ë¦„, ì—…ë¬´, ê¸‰ì—¬ë¥¼ ê²€ìƒ‰
 -->  SELECT ename, job, sal
   2  FROM emp
   3  WHERE job='SALESMAN';
@@ -39,39 +39,39 @@ emp...¹øÈ£, »ç¿øÀÌ¸§, ¾÷¹«¸¦ °Ë»ö
 -->  SELECT ename, job, sal
   2  FROM emp
   3  WHERE job='SALESMAN'
-  4  ORDER BY sal; //¿À¸§Â÷¼ø
+  4  ORDER BY sal; //ì˜¤ë¦„ì°¨ìˆœ
 -->  SELECT ename, job, sal
   2  FROM emp
   3  WHERE job='SALESMAN'
-  4  ORDER BY sal DESC; //³»¸²Â÷¼ø
+  4  ORDER BY sal DESC; //ë‚´ë¦¼ì°¨ìˆœ
 
-4) DISTINCT :: Áßº¹ÀÇ Á¦²¸¹ö¸®´Â Å°¿öµå / SELECT ¹Ù·Î µÚ¿¡ ³ª¿Â´Ù.
-* emp...ºÎ¼­¹øÈ£¸¦ °Ë»ö
+4) DISTINCT :: ì¤‘ë³µì˜ ì œê»´ë²„ë¦¬ëŠ” í‚¤ì›Œë“œ / SELECT ë°”ë¡œ ë’¤ì— ë‚˜ì˜¨ë‹¤.
+* emp...ë¶€ì„œë²ˆí˜¸ë¥¼ ê²€ìƒ‰
 -->  SELECT DISTINCT(deptno) FROM emp;
 -->  SELECT DISTINCT(deptno) FROM emp
-  2  ORDER BY deptno;//  ÀÚµ¿Á¤·Ä Áö¿ø ¾ÈÇÔ..ÇØÁà¾ß ÇÑ´Ù.
+  2  ORDER BY deptno;//  ìžë™ì •ë ¬ ì§€ì› ì•ˆí•¨..í•´ì¤˜ì•¼ í•œë‹¤.
 
-5)  NULL :: ÀÚ°Ý¾øÀ½ / ¹ÌÈ®Á¤ÀÇ ÀÇ¹Ì¸¦ °¡Áö´Â °ª
-*EMP....COMMÀ» ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä....»ç¿øÀÌ¸§, JOB, COMMÀÌ Ãâ·Â
+5)  NULL :: ìžê²©ì—†ìŒ / ë¯¸í™•ì •ì˜ ì˜ë¯¸ë¥¼ ê°€ì§€ëŠ” ê°’
+*EMP....COMMì„ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬....ì‚¬ì›ì´ë¦„, JOB, COMMì´ ì¶œë ¥
 --> SELECT ename, job, comm
   2  FROM emp
   3  ORDER BY comm;
 
-* emp....commÀÌ null ÀÎ »ç¿øÀ» °Ë»ö
+* emp....commì´ null ì¸ ì‚¬ì›ì„ ê²€ìƒ‰
 --> SELECT * FROM emp WHERE comm is null;
 --> SELECT * FROM emp WHERE comm is not null;
 
-* emp...»ç¿øÀÇ ¿¬ºÀÀ» ±¸ÇÏ°í ALIAS¸¦ ÁöÁ¤
---> SELECT ename, job, sal, sal*12+comm ¿¬ºÀ FROM emp;//commÀÌ null ÀÌ¸é ¿¬»ê¾ÈµÊ
---> SELECT ename, job, sal, sal*12+NVL(comm,0) ¿¬ºÀ FROM emp;
-  nvl(comm, 0) :: commÀÌ nullÀÌ¸é 0 / null ÀÌ ¾Æ´Ï¸é comm°ª ±×´ë·Î »ç¿ë
+* emp...ì‚¬ì›ì˜ ì—°ë´‰ì„ êµ¬í•˜ê³  ALIASë¥¼ ì§€ì •
+--> SELECT ename, job, sal, sal*12+comm ì—°ë´‰ FROM emp;//commì´ null ì´ë©´ ì—°ì‚°ì•ˆë¨
+--> SELECT ename, job, sal, sal*12+NVL(comm,0) ì—°ë´‰ FROM emp;
+  nvl(comm, 0) :: commì´ nullì´ë©´ 0 / null ì´ ì•„ë‹ˆë©´ commê°’ ê·¸ëŒ€ë¡œ ì‚¬ìš©
   
 
- 6) ¿¬°á ¿¬»êÀÚ
- --> SELECT ename||'¾¾! ´ç½ÅÀÇ ±Þ¿©°¡' || sal ||'¿¡¼­ '|| sal*1.02||'·Î Á¶Á¤µÇ¾ú½À´Ï´Ù' FROM emp;
+ 6) ì—°ê²° ì—°ì‚°ìž
+ --> SELECT ename||'ì”¨! ë‹¹ì‹ ì˜ ê¸‰ì—¬ê°€' || sal ||'ì—ì„œ '|| sal*1.02||'ë¡œ ì¡°ì •ë˜ì—ˆìŠµë‹ˆë‹¤' FROM emp;
 
  7) rownum
- * emp...±Þ¿©¸¦ °¡Àå ¸¹ÀÌ ¹Þ´Â »ç¿ø ·©Å· top3¸í¸¸ Ãâ·Â
+ * emp...ê¸‰ì—¬ë¥¼ ê°€ìž¥ ë§Žì´ ë°›ëŠ” ì‚¬ì› ëž­í‚¹ top3ëª…ë§Œ ì¶œë ¥
  --> SELECT ename, job, sal
   2  FROM (SELECT * FROM emp ORDER BY sal DESC)
   3  WHERE rownum<=3;
