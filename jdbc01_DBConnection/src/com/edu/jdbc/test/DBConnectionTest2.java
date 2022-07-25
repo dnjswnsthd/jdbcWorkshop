@@ -28,9 +28,9 @@ public class DBConnectionTest2 {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("드라이버 로딩 성공");
 
-			// 2. DB Servcer와 연결
+			// 2. DB Server와 연결
 			String url = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
-			Connection conn = DriverManager.getConnection(url, "hr", "hr");
+			Connection conn = DriverManager.getConnection(url, "hr", "hr");// 무슨일이 있어도 닫아줘야한다.
 			System.out.println("DB Server 연결 성공");
 
 			// 3. PreparedStatement 객체 생성
